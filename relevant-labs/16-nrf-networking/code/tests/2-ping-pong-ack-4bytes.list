@@ -2052,7 +2052,7 @@ Disassembly of section .text:
     9ee0:	e58d3044 	str	r3, [sp, #68]	; 0x44
     9ee4:	e3a0303b 	mov	r3, #59, 0	; 0x3b
     9ee8:	e58d3048 	str	r3, [sp, #72]	; 0x48
-    9eec:	e3a03006 	mov	r3, #6, 0
+    9eec:	e3a03040 	mov	r3, #64, 0	; 0x40
     9ef0:	e58d3004 	str	r3, [sp, #4]
     9ef4:	e3a03004 	mov	r3, #4, 0
     9ef8:	e58d3000 	str	r3, [sp]

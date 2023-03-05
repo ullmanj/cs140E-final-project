@@ -6,10 +6,10 @@
 # PROGS := $(wildcard tests/0-*.c)
 
 # all the tests
-# PROGS := $(wildcard tests/[0123]-*.c)
+PROGS := $(wildcard tests/[0123]-*.c)
 
 # PROGS := $(wildcard tests/2-ping-pong-ack-4bytes.c)
-PROGS := $(wildcard tests/4-*.c)  # Part 5
+# PROGS := $(wildcard tests/4-*.c)  # Part 5
 
 # PROGS := tests/1-one-way-no-ack-4bytes.c  # testing specifically
 
