@@ -1,0 +1,12 @@
+objs/timer-interrupt.o: staff-src/timer-interrupt.c \
+ /Users/jamie/Documents/CS140E/cs140E-final-project/libs-240lx/libpi/include/rpi.h \
+ /Users/jamie/Documents/CS140E/cs140E-final-project/libs-240lx/libpi/include/gpio.h \
+ /Users/jamie/Documents/CS140E/cs140E-final-project/libs-240lx/libpi/include/../libc/libc-extra.h \
+ /Users/jamie/Documents/CS140E/cs140E-final-project/libs-240lx/libpi/include/../libc/assert.h \
+ /Users/jamie/Documents/CS140E/cs140E-final-project/libs-240lx/libpi/include/rpi-constants.h \
+ /Users/jamie/Documents/CS140E/cs140E-final-project/libs-240lx/libpi/include/rpi-extra.h \
+ /Users/jamie/Documents/CS140E/cs140E-final-project/libs-240lx/libpi/include/timer-interrupt.h \
+ /Users/jamie/Documents/CS140E/cs140E-final-project/libs-240lx/libpi/include/rpi.h \
+ /Users/jamie/Documents/CS140E/cs140E-final-project/libs-240lx/libpi/include/rpi-armtimer.h \
+ /Users/jamie/Documents/CS140E/cs140E-final-project/libs-240lx/libpi/include/rpi-interrupts.h \
+ /Users/jamie/Documents/CS140E/cs140E-final-project/libs-240lx/libpi/libc/helper-macros.h
