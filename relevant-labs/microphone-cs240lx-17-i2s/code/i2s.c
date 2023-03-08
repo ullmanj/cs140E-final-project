@@ -87,7 +87,7 @@ void i2s_init(void) {
     val = bit_set(val, I2S_CS_SYNC);  // to detect 2 clock cycles passed
     PUT32(CS_A, val);
 
-    while(bit_is_off(GET32(CS_A), I2S_CS_SYNC)) {output("waiting here");};  // delay 2 PCM clocks to ensure FIFOs are reset.
+    while(bit_is_off(GET32(CS_A), I2S_CS_SYNC));  // delay 2 PCM clocks to ensure FIFOs are reset.
     // RXTHR (and TXTHR) should be zero on reset so keep them 0
     dev_barrier();
 
