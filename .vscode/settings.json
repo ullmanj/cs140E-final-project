@@ -1,0 +1,6 @@
+{
+    "files.associations": {
+        "neopixel.h": "c",
+        "bit-support.h": "c"
+    }
+}
