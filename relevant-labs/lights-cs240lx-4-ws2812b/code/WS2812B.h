@@ -105,6 +105,13 @@
 // defines the pi-specific code to read its cycle-counter.
 #include "cycle-count.h"
 
+enum {
+    GPIO_BASE = 0x20200000,
+    gpio_set0  = (GPIO_BASE + 0x1C),
+    gpio_clr0  = (GPIO_BASE + 0x28),
+    gpio_lev0  = (GPIO_BASE + 0x34)
+};
+
 // make sure we don't call the non-inlined gpio implementations.
 #define gpio_set_on "error"
 #define gpio_set_off "error"
@@ -113,15 +120,18 @@
 // duplicate set_on/off so we can inline to reduce overhead.
 // they have to run in < the delay we are shooting for.
 static inline void gpio_set_on_raw(unsigned pin) {
-    unimplemented();
+    //PUT32(gpio_clr0, 0x1 << pin);
+    *(volatile unsigned *)0x20200028 = (1 << pin);
 }
 static inline void gpio_set_off_raw(unsigned pin) {
-    unimplemented();
+    // PUT32(gpio_set0, 0x1 << pin);
+    *(volatile unsigned *)0x2020001c = (1 << pin);
 }
 
 // use cycle_cnt_read() to delay <n_cyc> cycles measured from <start_cyc>
 static inline void delay_ncycles(unsigned start_cyc, unsigned n_cyc) {
-    unimplemented();
+    unsigned c;
+    while (((c = cycle_cnt_read()) - start_cyc) < n_cyc);
 }
 
 

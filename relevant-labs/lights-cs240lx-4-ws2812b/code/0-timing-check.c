@@ -127,7 +127,7 @@ static void checktreset(unsigned pin) {
 }
 
 void check_timings(int pin, int die_on_error_p) {
-    asm_align(3);
+    asm_align(3); // this is asm volatile "align 4"
 	unsigned s = cycle_cnt_read();
 	unsigned e = cycle_cnt_read();
 	unsigned overhead = e - s;

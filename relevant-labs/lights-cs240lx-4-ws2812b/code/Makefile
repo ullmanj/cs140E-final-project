@@ -13,7 +13,7 @@ SRC := neopixel.c
 TTYUSB = 
 
 # set RUN = 1 if you want the code to automatically run after building.
-# RUN = 1
+RUN = 1
 
 DEPS = ./Makefile
 SUPPORT_OBJS := $(SRC:.c=.o)
