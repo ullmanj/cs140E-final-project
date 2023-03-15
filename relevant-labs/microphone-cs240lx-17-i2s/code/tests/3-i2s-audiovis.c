@@ -2,8 +2,8 @@
  * display audio visualization on neopixels (basic/janky)
  */
 #include "rpi.h"
-#include "WS2812B.h"
-#include "neopixel.h"
+#include "../../../lights-cs240lx-4-ws2812b/code/WS2812B.h"
+#include "../../../lights-cs240lx-4-ws2812b/code/neopixel.h"
 #include "i2s.h"
 
 // the pin used to control the light strip.
