@@ -29,7 +29,18 @@ struct neo_handle {
 
 void neopix_flush(neo_t h) { 
     // needs the rest of the code.
+    // 1. write out the pixel values in the array
+    for (unsigned i = 0; i < h->npixel; i++) {
+        pix_sendpixel(h->pin, h->pixels[i].r, h->pixels[i].g, h->pixels[i].b);
+    }
+    // 2. do a flush
     pix_flush(h->pin);
+    // 3. Only then set the array to all 0s.
+    for (unsigned i = 0; i < h->npixel; i++) {
+        h->pixels[i].r = 0;
+        h->pixels[i].g = 0;
+        h->pixels[i].b = 0;
+    }
 }
 
 neo_t neopix_init(uint8_t pin, unsigned npixel) {
@@ -62,5 +73,10 @@ void neopix_clear(neo_t h) {
 
 // set pixel <pos> in <h> to {r,g,b}
 void neopix_write(neo_t h, uint32_t pos, uint8_t r, uint8_t g, uint8_t b) {
-    unimplemented();
+    // update the state of neo (the pixel array) and call write   
+    // if the position passed in (pos) is out of bounds, just return.
+    if (pos > h->npixel || pos < 0) return;
+    h->pixels[pos].r = r;
+    h->pixels[pos].g = g;
+    h->pixels[pos].b = b;
 }

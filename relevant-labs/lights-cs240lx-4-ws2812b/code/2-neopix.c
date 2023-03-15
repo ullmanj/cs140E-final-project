@@ -9,6 +9,8 @@
 // the pin used to control the light strip.
 enum { pix_pin = 21 };
 
+
+
 // crude routine to write a pixel at a given location.
 void place_cursor(neo_t h, int i) {
     neopix_write(h,i-2,0xff,0,0);
@@ -26,6 +28,11 @@ void notmain(void) {
     // array.
     unsigned npixels = 56;  // you'll have to figure this out.
     neo_t h = neopix_init(pix_pin, npixels);
+    
+    // for (int i = 0; i < npixels; i++) {
+    //     neopix_write(h,i,0xff,0xff,0x0);
+    // }
+    // neopix_flush(h);
 
     // does 10 increasingly faster loops.
     for(int j = 0; j < 10; j++) {

@@ -10,6 +10,15 @@ inline int32_t fft_fixed_mul(int16_t a, int16_t b) {
 
 // converts uint32 centered at INT_MAX into int16 (Q.15) centered at 0
 inline int16_t to_q15(uint32_t x) {
+    // first shift by 1 to the right
+    // x = x >> 1;
+    // // then cast into a int32_t
+    // int32_t y = (int32_t) x;
+    // // then we subtract 2^32-1 to get it into the right range
+    // y -= 2^32 - 1;
+    // // then shift over by 15 to the right 12
+    // y = y >> 2;
+    // return (int16_t)((x << 2) >> 15); // 
     unimplemented();
 }
 

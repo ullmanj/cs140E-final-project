@@ -74,14 +74,18 @@
     // can flip between.
     enum { 
         // to send a 1: set pin high for T1H ns, then low for T0H ns.
-        T1H = ns_to_cycles(0),        // Width of a 1 bit in ns
-        T0H = ns_to_cycles(0),        // Width of a 0 bit in ns
+        T1H = ns_to_cycles(900),        // Width of a 1 bit in ns
+        T0H = ns_to_cycles(350),        // Width of a 0 bit in ns
         // to send a 0: set pin high for T1L ns, then low for T0L ns.
-        T1L = ns_to_cycles(0),        // Width of a 1 bit in ns
-        T0L = ns_to_cycles(0),        // Width of a 0 bit in ns
+        T1L = ns_to_cycles(350),        // Width of a 1 bit in ns
+        T0L = ns_to_cycles(900),        // Width of a 0 bit in ns
 
         // to make the LED switch to the new values, old the pin low for FLUSH ns
-        FLUSH = ns_to_cycles(50 *1000)    // how long to hold low to flush
+        FLUSH = ns_to_cycles(60 * 1000)    // how long to hold low to flush
+        // T1H = ns_to_cycles(900),        // Width of a 1 bit in ns
+        // T0H = ns_to_cycles(350),        // Width of a 0 bit in ns
+        // T1L = ns_to_cycles(350),        // Width of a 1 bit in ns
+        // T0L = ns_to_cycles(900),        // Width of a 0 bit in ns
     };
 
 #else
@@ -121,11 +125,11 @@ enum {
 // they have to run in < the delay we are shooting for.
 static inline void gpio_set_on_raw(unsigned pin) {
     //PUT32(gpio_clr0, 0x1 << pin);
-    *(volatile unsigned *)0x20200028 = (1 << pin);
+    *(volatile unsigned *)0x2020001C = (1 << pin);
 }
 static inline void gpio_set_off_raw(unsigned pin) {
     // PUT32(gpio_set0, 0x1 << pin);
-    *(volatile unsigned *)0x2020001c = (1 << pin);
+    *(volatile unsigned *)0x20200028 = (1 << pin);
 }
 
 // use cycle_cnt_read() to delay <n_cyc> cycles measured from <start_cyc>
@@ -149,7 +153,7 @@ static inline void delay_ncycles(unsigned start_cyc, unsigned n_cyc) {
 // depending on its alignment.  Can experiment if need be.
 // #pragma GCC optimize ("align-functions=16")
 
-static unsigned const compensation = 16;
+static unsigned const compensation = 16; // 16
 
 // two helpers for implementing T1H,T0H,T0L,T1L
 
@@ -157,36 +161,41 @@ static unsigned const compensation = 16;
 // you may need to add a constant to correct for this.
 static inline void write_1(unsigned pin, unsigned ncycles) {
     // use gpio_set_on_raw
-    unimplemented();
+    unsigned start_cyc = cycle_cnt_read() - compensation;
+    // crucial placement of this before gpio to take that into account
+    gpio_set_on_raw(pin);
+    delay_ncycles(start_cyc, ncycles);
 }
 
 // write 0 for <ncycles>: since reading the cycle counter takes cycles you
 // may need to add a constant to correct for it.
 static inline void write_0(unsigned pin, unsigned ncycles) {
     // use gpio_set_off_raw
-    unimplemented();
+    unsigned start_cyc = cycle_cnt_read() - compensation;
+    gpio_set_off_raw(pin);
+    delay_ncycles(start_cyc, ncycles);
 }
 
 // implement T1H from the datasheet (call write_1 with the right delay)
 static inline void t1h(unsigned pin) {
-    unimplemented();
+    write_1(pin, T1H - compensation);
 }
 
-// implement T0H from the datasheet (call write_0 with the right delay)
+// implement T0H from the datasheet (call write_1 with the right delay)
 static inline void t0h(unsigned pin) {
-    unimplemented();
+    write_1(pin, T0H - compensation); // high so write 1, but its for bit code 0
 }
 // implement T1L from the datasheet.
 static inline void t1l(unsigned pin) {
-    unimplemented();
+    write_0(pin, T1L - compensation); // low so write 0, but its for bit code 1
 }
 // implement T0L from the datasheed.
 static inline void t0l(unsigned pin) {
-    unimplemented();
+    write_0(pin, T0L - compensation);
 }
 // implement RESET from the datasheet.
 static inline void treset(unsigned pin) {
-    unimplemented();
+    write_0(pin, FLUSH);
 }
 
 /***********************************************************************************
@@ -195,12 +204,19 @@ static inline void treset(unsigned pin) {
 
 // flush out the pixels.
 static inline void pix_flush(unsigned pin) { 
-    treset(pin); 
+    treset(pin);
 }
 
 // transmit a {0,1} bit to the ws2812b
 static inline void pix_sendbit(unsigned pin, uint8_t b) {
-    unimplemented();
+    assert (b == 0 || b == 1);
+    if (b == 0) {
+        t0h(pin); 
+        t0l(pin);
+    } else {
+        t1h(pin);
+        t1l(pin);
+    }
 }
 
 // use pix_sendbit to send byte <b>
@@ -209,7 +225,15 @@ static inline void pix_sendbit(unsigned pin, uint8_t b) {
 // becomes huge: unclear if better.  if you decide to inline it, make sure you run
 // tests before and after.  
 static void pix_sendbyte(unsigned pin, uint8_t b) {
-    unimplemented();
+    for (unsigned j = 0; j < 8; j++) {
+        // send from the high bit first
+        unsigned i = 7 - j;
+        //output("%d", (b >> i) & 0b1);
+        //output("(%d,%d)", i, (b >> i) & 0b1);
+        // output("sending the %dth bit value %d\n", i, (b >> i) & 0b1);
+        pix_sendbit(pin, (b >> i) & 0b1);
+        // i = 1, go right by 1, then and with 0b1
+    }
 }
 
 // use pix_sendbyte to send bytes [<r> red, <g> green, <b> blue out on pin <pin>.
@@ -218,6 +242,13 @@ static inline void pix_sendpixel(unsigned pin, uint8_t r, uint8_t g, uint8_t b) 
     // delay between the send bytes --- when you optimize it's possible you need 
     // to trim the delays you use.
     // use pix_sendbyte to send <r>, <g> <b>
-    unimplemented();
+    pix_sendbyte(pin, g); // per manual, send as GRB
+    //output(" ");
+    pix_sendbyte(pin, r);
+    //output(" ");
+    pix_sendbyte(pin, b);
+    // output("\n");
+    // pix_sendbyte(pin, 0x00);
+    
 }
 #endif
