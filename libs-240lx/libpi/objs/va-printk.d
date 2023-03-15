@@ -1,9 +1,9 @@
 objs/va-printk.o: libc/va-printk.c \
- /Users/jamie/Documents/CS140E/cs140E-final-project/libs-240lx/libpi/include/rpi-internal.h \
- /Users/jamie/Documents/CS140E/cs140E-final-project/libs-240lx/libpi/include/rpi.h \
- /Users/jamie/Documents/CS140E/cs140E-final-project/libs-240lx/libpi/include/gpio.h \
- /Users/jamie/Documents/CS140E/cs140E-final-project/libs-240lx/libpi/include/../libc/libc-extra.h \
- /Users/jamie/Documents/CS140E/cs140E-final-project/libs-240lx/libpi/include/../libc/assert.h \
- /Users/jamie/Documents/CS140E/cs140E-final-project/libs-240lx/libpi/include/rpi-constants.h \
- /Users/jamie/Documents/CS140E/cs140E-final-project/libs-240lx/libpi/include/rpi-extra.h \
+ /Users/kateeselius/Documents/CS140E/cs140E-final-project/libs-240lx/libpi/include/rpi-internal.h \
+ /Users/kateeselius/Documents/CS140E/cs140E-final-project/libs-240lx/libpi/include/rpi.h \
+ /Users/kateeselius/Documents/CS140E/cs140E-final-project/libs-240lx/libpi/include/gpio.h \
+ /Users/kateeselius/Documents/CS140E/cs140E-final-project/libs-240lx/libpi/include/../libc/libc-extra.h \
+ /Users/kateeselius/Documents/CS140E/cs140E-final-project/libs-240lx/libpi/include/../libc/assert.h \
+ /Users/kateeselius/Documents/CS140E/cs140E-final-project/libs-240lx/libpi/include/rpi-constants.h \
+ /Users/kateeselius/Documents/CS140E/cs140E-final-project/libs-240lx/libpi/include/rpi-extra.h \
  libc/va-printk.h
