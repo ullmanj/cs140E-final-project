@@ -1,5 +1,7 @@
 {
     "files.associations": {
-        "ws2812b.h": "c"
+        "ws2812b.h": "c",
+        "neopixel.h": "c",
+        "bit-support.h": "c"
     }
 }
