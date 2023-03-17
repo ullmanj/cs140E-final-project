@@ -8,7 +8,8 @@
 #include "rpi.h"
 #include "fft.h"
 #include "i2s.h"
-#include "neopixel.h"
+#include "/Users/ericbear/Documents/CS140E/cs140E-final-project/relevant-labs/lights-cs240lx-4-ws2812b/code/neopixel.h"
+// #include "../../../lights-cs240lx-4-ws2812b/code/neopixel.h"
 
 #define LOG2_FFT_LEN 10
 #define FFT_LEN (1 << LOG2_FFT_LEN)
@@ -57,9 +58,9 @@ void notmain(void) {
             int val = (acc > 0xFF * NEOPIX_DIV) ? 0xFF : acc / NEOPIX_DIV;
             neopix_write(neo, i, val, val, val); // white
         }
-        neopix_flush(neo);
+       neopix_flush(neo);
     }
-
+    
     clean_reboot();
 
 }

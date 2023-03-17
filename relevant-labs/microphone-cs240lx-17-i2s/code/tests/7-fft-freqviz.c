@@ -6,7 +6,9 @@
 #include "rpi.h"
 #include "fft.h"
 #include "i2s.h"
-#include "neopixel.h"
+// #include "neopixel.h"
+#include "/Users/ericbear/Documents/CS140E/cs140E-final-project/relevant-labs/lights-cs240lx-4-ws2812b/code/neopixel.h"
+
 
 #define LOG2_FFT_LEN 10
 #define FFT_LEN (1 << LOG2_FFT_LEN)
@@ -16,12 +18,14 @@
 // seeing multiples of the fundamental frequency 
 #define MAX_THRESH_FACTOR 5 / 4
 
-#define NEOPIX_PIN 2
-#define NEOPIX_LEN 16
+#define NEOPIX_PIN 21 // from 2
+#define NEOPIX_LEN 30 // 16
+// was 430 and 800
 #define NEOPIX_MIN_FREQ 430
 #define NEOPIX_MAX_FREQ 800
 
 int get_idx(int freq) {
+    // TODO! FIX!
     if (freq < NEOPIX_MIN_FREQ || freq > NEOPIX_MAX_FREQ) {
         return -1;
     }
@@ -33,6 +37,7 @@ void notmain(void) {
     enable_cache();
     i2s_init();
     neo_t neo = neopix_init(NEOPIX_PIN, NEOPIX_LEN);
+    neopix_clear(neo);
 
     int16_t real[FFT_LEN] = {0};
     int16_t imag[FFT_LEN] = {0};
@@ -58,19 +63,25 @@ void notmain(void) {
                 data_max_idx = i;
             }
         }
-
+        
         int16_t freq = data_max_idx * FS / FFT_LEN;
+        //output("\tdata_max: %d\n\tdata_max_i=%d\n\tfreq=%d\n", data_max, data_max_idx, freq);
 
         int neopix_idx = get_idx(freq);
         for (int i = 0; i < neopix_idx; i++) {
             neopix_write(neo, i, 0x80, 0x80, 0x80);
         }
-        neopix_flush(neo);
-
+        // neopix_fancy_set(neo, neopix_idx);
+        neopix_flush_up_to_keep(neo, neopix_idx);
+        /// neopix_flush(neo);
+        if (neopix_idx >= 0)
         printk("%dHz, index %d\n", freq, neopix_idx);
 
     }
-
+    neopix_clear(neo);
+    // for (int i = 0; i < NEOPIX_LEN; i++) {
+    //     neopix_write(neo, i, 0x0, 0x0, 0x0);
+    // }
     clean_reboot();
-
+    
 }

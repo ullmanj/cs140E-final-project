@@ -11,6 +11,8 @@ neo_t neopix_init(uint8_t pin, unsigned npixels);
 // ignores if out of bounds (or assert?)
 void neopix_write(neo_t h, uint32_t pos, uint8_t r, uint8_t g, uint8_t b);
 void neopix_flush(neo_t h);
+void neopix_flush_up_to_keep(neo_t h, unsigned neopix_idx);
+void neopix_fancy_set(neo_t h, unsigned neopix_idx);
 
 // immediately write black/off (0,0,0) to every pixel upto 
 // pixel number <upto>

@@ -11,16 +11,12 @@ TEST_SRC = tests/4-fft-test.c
 TEST_SRC = tests/1-i2s-test.c
 
 TEST_SRC = tests/7-fft-freqviz.c
-TEST_SRC = tests/6-fft-freqout.c
-# TEST_SRC = tests/3-i2s-audiovis.c
-TEST_SRC = tests/4-fft-test.c
-<<<<<<< HEAD
-TEST_SRC = tests/5-fft-time.c
-=======
-# TEST_SRC = tests/5-fft-time.c
->>>>>>> f50bd4303a210ef7d36305d0efb59bb1ff465fc1
 # TEST_SRC = tests/6-fft-freqout.c
-# TEST_SRC = tests/7-fft-freqviz.c
+# TEST_SRC = tests/3-i2s-audiovis.c
+# TEST_SRC = tests/4-fft-test.c
+# TEST_SRC = tests/5-fft-time.c
+# TEST_SRC = tests/6-fft-freqout.c
+TEST_SRC = tests/7-fft-freqviz.c
 # TEST_SRC = tests/8-fft-buckets.c
 
 OPT_LEVEL = -O3
@@ -29,6 +25,7 @@ OPT_LEVEL = -O3
 #   if you want to use our staff-hc-sr04.o,
 #   comment SRC out and uncomment STAFF_OBJS
 SRC = i2s.c fft.c
+SRC += /Users/ericbear/Documents/CS140E/cs140E-final-project/relevant-labs/lights-cs240lx-4-ws2812b/code/neopixel.c
 
 # define this if you need to give the device for your pi
 TTYUSB = 

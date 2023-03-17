@@ -43,6 +43,39 @@ void neopix_flush(neo_t h) {
     }
 }
 
+// void neopix_fancy_set(neo_t h, unsigned neopix_idx) {
+//     // 1. write out the pixel values in the array
+//     unsigned r, g, b;
+//     r = g = b = 0x80;
+//     for (unsigned i = 0; i < neopix_idx; i++) {
+//         pix_sendpixel(h->pin, r,g,b) ;  // 0x40 + 8 * i, 0x40 + 8 * i, 0x40 + 8 * i
+//     }
+//     // 2. do a flush
+//     pix_flush(h->pin);
+//     // // 3. Only then set the array to all 0s.
+//     for (unsigned i = neo_pix; i < h->npixel; i++) {
+//         h->pixels[i].r = 0;
+//         h->pixels[i].g = 0;
+//         h->pixels[i].b = 0;
+//     }
+// }
+
+void neopix_flush_up_to_keep(neo_t h, unsigned neopix_idx) {
+        // needs the rest of the code.
+    // 1. write out the pixel values in the array
+    for (unsigned i = 0; i < h->npixel; i++) {
+        pix_sendpixel(h->pin, h->pixels[i].r, h->pixels[i].g, h->pixels[i].b);
+    }
+    // 2. do a flush
+    pix_flush(h->pin);
+    // 3. Only then set the array to all 0s.
+    for (unsigned i = neopix_idx; i < h->npixel; i++) {
+        h->pixels[i].r = 0;
+        h->pixels[i].g = 0;
+        h->pixels[i].b = 0;
+    }
+}
+
 neo_t neopix_init(uint8_t pin, unsigned npixel) {
     neo_t h;
     unsigned nbytes = sizeof *h + sizeof h->pixels[0] * npixel;
