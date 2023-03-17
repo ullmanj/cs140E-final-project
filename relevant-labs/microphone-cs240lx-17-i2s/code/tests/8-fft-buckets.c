@@ -8,7 +8,7 @@
 #include "rpi.h"
 #include "fft.h"
 #include "i2s.h"
-#include "/Users/ericbear/Documents/CS140E/cs140E-final-project/relevant-labs/lights-cs240lx-4-ws2812b/code/neopixel.h"
+#include "../../../lights-cs240lx-4-ws2812b/code/neopixel.h"
 // #include "../../../lights-cs240lx-4-ws2812b/code/neopixel.h"
 
 #define LOG2_FFT_LEN 10

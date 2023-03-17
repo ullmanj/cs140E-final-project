@@ -25,7 +25,7 @@ OPT_LEVEL = -O3
 #   if you want to use our staff-hc-sr04.o,
 #   comment SRC out and uncomment STAFF_OBJS
 SRC = i2s.c fft.c
-SRC += /Users/ericbear/Documents/CS140E/cs140E-final-project/relevant-labs/lights-cs240lx-4-ws2812b/code/neopixel.c
+SRC += $(CS240LX_2022_PATH)/../relevant-labs/lights-cs240lx-4-ws2812b/code/neopixel.c
 
 # define this if you need to give the device for your pi
 TTYUSB = 
