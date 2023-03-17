@@ -68,14 +68,14 @@ void notmain(void) {
         //output("\tdata_max: %d\n\tdata_max_i=%d\n\tfreq=%d\n", data_max, data_max_idx, freq);
 
         int neopix_idx = get_idx(freq);
-        for (int i = 0; i < neopix_idx; i++) {
-            neopix_write(neo, i, 0x80, 0x80, 0x80);
+        if (neopix_idx >= 0) {
+            for (int i = 0; i < neopix_idx; i++) {
+                neopix_write(neo, i, 0x80, 0x80, 0x80);
+            }
+            neopix_flush(neo);
+
+            printk("%dHz, index %d\n", freq, neopix_idx);
         }
-        // neopix_fancy_set(neo, neopix_idx);
-        neopix_flush_up_to_keep(neo, neopix_idx);
-        /// neopix_flush(neo);
-        if (neopix_idx >= 0)
-        printk("%dHz, index %d\n", freq, neopix_idx);
 
     }
     neopix_clear(neo);
