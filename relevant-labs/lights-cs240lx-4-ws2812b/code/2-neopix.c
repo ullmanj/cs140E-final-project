@@ -7,7 +7,7 @@
 #include "neopixel.h"
 
 // the pin used to control the light strip.
-enum { pix_pin = 21 };
+enum { pix_pin = 11 };
 
 
 
@@ -20,7 +20,7 @@ void place_cursor(neo_t h, int i) {
 }
 
 void notmain(void) {
-    enable_cache(); 
+    caches_enable(); // enable_cache(); 
     gpio_set_output(pix_pin);
 
     // make sure when you implement the neopixel 

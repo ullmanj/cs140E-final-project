@@ -11,7 +11,7 @@
 #define N (SAMPLE_RATE * SECS)
 
 void notmain(void) {
-    enable_cache(); 
+    caches_enable(); //enable_cache(); 
 
     int32_t *buf = (int32_t *)kmalloc(N * sizeof(int32_t));
 

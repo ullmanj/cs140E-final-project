@@ -7,7 +7,7 @@
 #include "i2s.h"
 
 // the pin used to control the light strip.
-#define PIX_PIN 2
+#define PIX_PIN 11
 #define WINDOW 128
 
 // crude routine to write a pixel at a given location.
@@ -23,7 +23,7 @@ int32_t abs(int32_t x) {
 }
 
 void notmain(void) {
-    enable_cache(); 
+    caches_enable(); //enable_cache(); 
     gpio_set_output(PIX_PIN);
 
     unsigned npixels = 16;

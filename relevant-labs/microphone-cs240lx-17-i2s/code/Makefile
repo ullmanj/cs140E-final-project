@@ -1,31 +1,21 @@
 # list out the driver program source
-# TEST_SRC = $(wildcard tests/*.c)
-# TEST_SRC = tests/1-i2s-test.c
-# TEST_SRC = tests/2-i2s-dump.c
-#TEST_SRC = tests/3-i2s-audiovis.c
-TEST_SRC = tests/4-fft-test.c
-TEST_SRC = tests/5-fft-time.c
-TEST_SRC = tests/6-fft-freqout.c
-TEST_SRC = tests/4-fft-test.c
-
-TEST_SRC = tests/1-i2s-test.c
-
-TEST_SRC = tests/7-fft-freqviz.c
-# TEST_SRC = tests/6-fft-freqout.c
-# TEST_SRC = tests/3-i2s-audiovis.c
-# TEST_SRC = tests/4-fft-test.c
-# TEST_SRC = tests/5-fft-time.c
-# TEST_SRC = tests/6-fft-freqout.c
-TEST_SRC = tests/7-fft-freqviz.c
-# TEST_SRC = tests/8-fft-buckets.c
+# PROGS = $(wildcard tests/*.c)
+# PROGS = tests/1-i2s-test.c
+# PROGS = tests/2-i2s-dump.c
+# PROGS = tests/3-i2s-audiovis.c
+# PROGS = tests/4-fft-test.c
+# PROGS = tests/5-fft-time.c
+# PROGS = tests/6-fft-freqout.c
+# PROGS = tests/7-fft-freqviz.c
+PROGS = tests/8-fft-buckets.c
 
 OPT_LEVEL = -O3
 
 # your source, shared by driver code.
 #   if you want to use our staff-hc-sr04.o,
 #   comment SRC out and uncomment STAFF_OBJS
-SRC = i2s.c fft.c
-SRC += $(CS240LX_2022_PATH)/../relevant-labs/lights-cs240lx-4-ws2812b/code/neopixel.c
+COMMON_SRC = i2s.c fft.c
+COMMON_SRC += $(CS140E_2023_PATH)/../relevant-labs/lights-cs240lx-4-ws2812b/code/neopixel.c
 
 # define this if you need to give the device for your pi
 TTYUSB = 
@@ -34,5 +24,5 @@ TTYUSB =
 RUN = 1
 
 DEPS = ./Makefile
-SUPPORT_OBJS := $(SRC:.c=.o)
-include $(CS240LX_2022_PATH)/libpi/mk/Makefile.template
+# SUPPORT_OBJS := $(SRC:.c=.o)
+include $(CS140E_2023_PATH)/libpi/mk/Makefile.template

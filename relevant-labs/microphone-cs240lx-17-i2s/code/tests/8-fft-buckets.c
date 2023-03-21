@@ -16,7 +16,7 @@
 
 #define FS 44100
 
-#define NEOPIX_PIN 21
+#define NEOPIX_PIN 11
 #define NEOPIX_LEN 30
 #define NEOPIX_MIN_FREQ 40
 #define NEOPIX_MAX_FREQ 4000
@@ -26,7 +26,7 @@
 #define FREQS_PER_BUCKET ((NEOPIX_MAX_FREQ - NEOPIX_MIN_FREQ) / (NEOPIX_LEN) / (FS / FFT_LEN))
 
 void notmain(void) {
-    enable_cache();
+    caches_enable(); //enable_cache();
     i2s_init();
     neo_t neo = neopix_init(NEOPIX_PIN, NEOPIX_LEN);
 

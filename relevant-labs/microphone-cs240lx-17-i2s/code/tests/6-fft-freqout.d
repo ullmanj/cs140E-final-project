@@ -1,9 +1,8 @@
 tests/6-fft-freqout.o: tests/6-fft-freqout.c \
- /Users/ericbear/Documents/CS140E/cs140E-final-project/libs-240lx/libpi/include/rpi.h \
- /Users/ericbear/Documents/CS140E/cs140E-final-project/libs-240lx/libpi/include/gpio.h \
- /Users/ericbear/Documents/CS140E/cs140E-final-project/libs-240lx/libpi/include/../libc/libc-extra.h \
- /Users/ericbear/Documents/CS140E/cs140E-final-project/libs-240lx/libpi/include/../libc/assert.h \
- /Users/ericbear/Documents/CS140E/cs140E-final-project/libs-240lx/libpi/include/rpi-constants.h \
- /Users/ericbear/Documents/CS140E/cs140E-final-project/libs-240lx/libpi/include/rpi-extra.h \
+ /Users/jamie/Documents/CS140E/cs140E-final-project/libs-140e/libpi/include/rpi.h \
+ /Users/jamie/Documents/CS140E/cs140E-final-project/libs-140e/libpi/libc/demand.h \
+ /Users/jamie/Documents/CS140E/cs140E-final-project/libs-140e/libpi/include/gpio.h \
+ /Users/jamie/Documents/CS140E/cs140E-final-project/libs-140e/libpi/include/rpi-constants.h \
+ /Users/jamie/Documents/CS140E/cs140E-final-project/libs-140e/libpi/include/your-prototypes.h \
  fft.h i2s.h \
- /Users/ericbear/Documents/CS140E/cs140E-final-project/libs-240lx/libpi/libc/bit-support.h
+ /Users/jamie/Documents/CS140E/cs140E-final-project/libs-140e/libpi/libc/bit-support.h

@@ -9,7 +9,7 @@
 #define N (1 << LOG2_N)
 
 void notmain(void) {
-    enable_cache();
+    caches_enable(); //enable_cache();
 
     // alternating samples: should only see one nonzero frequency at midpoint
     int16_t real[N] = {1024,-1024,1024,-1024,1024,-1024,1024,-1024,1024,-1024,1024,-1024,1024,-1024,1024,-1024};

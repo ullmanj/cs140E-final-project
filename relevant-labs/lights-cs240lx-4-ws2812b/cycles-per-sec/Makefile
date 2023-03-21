@@ -15,9 +15,9 @@ OPT_LEVEL = -O3
 # set RUN = 1 if you want the code to automatically run after building.
 RUN = 1
 
-LIBS = $(CS240LX_2022_PATH)/lib/libgcc.a
+LIBS = $(CS140E_2023_PATH)/lib/libgcc.a
 
 DEPS = ./Makefile
 SUPPORT_OBJS := $(SRC:.c=.o)
-include $(CS240LX_2022_PATH)/libpi/mk/Makefile.template
+include $(CS140E_2023_PATH)/libpi/mk/Makefile.template
 

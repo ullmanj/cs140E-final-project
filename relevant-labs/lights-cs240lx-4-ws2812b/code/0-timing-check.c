@@ -29,7 +29,7 @@
 #include "cycle-count.h"
 
 // the pin used to control the light strip.
-enum { pix_pin = 21 };
+enum { pix_pin = 11 };
 
 // DO NOT DELETE *inline*.
 // you *HAVE* to inline, otherwise its a function pointer call.
@@ -182,7 +182,7 @@ static void check_delay(unsigned delay) {
 
 
 void notmain(void) {
-    enable_cache();
+    caches_enable(); //enable_cache();
     gpio_set_output(pix_pin);
 
     // check that your delay works.

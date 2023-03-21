@@ -14,7 +14,7 @@
 #define MAX_THRESH_FACTOR 5 / 4
 
 void notmain(void) {
-    enable_cache();
+    caches_enable(); //enable_cache();
     i2s_init();
 
     int16_t real[FFT_LEN] = {0};

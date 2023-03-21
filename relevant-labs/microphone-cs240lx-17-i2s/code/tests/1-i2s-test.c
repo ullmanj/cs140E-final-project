@@ -8,7 +8,7 @@
 
 void notmain(void) {
     
-    enable_cache(); 
+    caches_enable(); //enable_cache(); 
     
     i2s_init();
 

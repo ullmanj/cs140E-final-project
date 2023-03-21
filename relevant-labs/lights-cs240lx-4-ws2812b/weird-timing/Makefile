@@ -19,5 +19,5 @@ RUN = 1
 
 DEPS = ./Makefile
 SUPPORT_OBJS := $(SRC:.c=.o)
-include $(CS240LX_2022_PATH)/libpi/mk/Makefile.template
+include $(CS140E_2023_PATH)/libpi/mk/Makefile.template
 

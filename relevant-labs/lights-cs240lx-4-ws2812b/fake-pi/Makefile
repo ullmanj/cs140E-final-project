@@ -6,4 +6,4 @@ CFLAGS = -I../code.staff -DLIBPI_FAKE
 RUN = 1
 
 # LIBS = -lutil
-include $(CS240LX_2022_PATH)/libunix/mk/Makefile.unix
+include $(CS140E_2023_PATH)/libunix/mk/Makefile.unix

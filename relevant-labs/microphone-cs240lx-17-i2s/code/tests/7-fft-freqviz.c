@@ -35,7 +35,7 @@ int get_idx(int freq) {
 }
 
 void notmain(void) {
-    enable_cache();
+    caches_enable(); //enable_cache();
     i2s_init();
     neo_t neo1 = neopix_init(NEOPIX_PIN1, NEOPIX_LEN);
     neo_t neo2 = neopix_init(NEOPIX_PIN2, NEOPIX_LEN);

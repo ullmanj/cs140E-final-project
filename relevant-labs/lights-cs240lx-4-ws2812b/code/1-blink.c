@@ -8,12 +8,12 @@
 #include "neopixel.h"
 
 // the pin used to control the light strip.
-enum { pix_pin = 21 };
+enum { pix_pin = 11 };
 
 void notmain(void) {
     // if you don't do this, the granularity is too large for the timing
     // loop. 
-    enable_cache(); 
+    caches_enable(); //enable_cache(); 
     gpio_set_output(pix_pin);
 
     // turn on one pixel to blue.
