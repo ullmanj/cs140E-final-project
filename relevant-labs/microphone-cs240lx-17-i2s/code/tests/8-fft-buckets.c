@@ -16,8 +16,8 @@
 
 #define FS 44100
 
-#define NEOPIX_PIN 2
-#define NEOPIX_LEN 16
+#define NEOPIX_PIN 21
+#define NEOPIX_LEN 30
 #define NEOPIX_MIN_FREQ 40
 #define NEOPIX_MAX_FREQ 4000
 #define NEOPIX_DIV 32

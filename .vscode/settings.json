@@ -2,6 +2,9 @@
     "files.associations": {
         "ws2812b.h": "c",
         "neopixel.h": "c",
-        "bit-support.h": "c"
+        "bit-support.h": "c",
+        "nrf-test.h": "c",
+        "nrf.h": "c",
+        "circular.h": "c"
     }
 }

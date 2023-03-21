@@ -18,7 +18,8 @@
 // seeing multiples of the fundamental frequency 
 #define MAX_THRESH_FACTOR 5 / 4
 
-#define NEOPIX_PIN 21 // from 2
+#define NEOPIX_PIN1 10
+#define NEOPIX_PIN2 11
 #define NEOPIX_LEN 30 // 16
 // was 430 and 800
 #define NEOPIX_MIN_FREQ 430
@@ -36,8 +37,9 @@ int get_idx(int freq) {
 void notmain(void) {
     enable_cache();
     i2s_init();
-    neo_t neo = neopix_init(NEOPIX_PIN, NEOPIX_LEN);
-    neopix_clear(neo);
+    neo_t neo1 = neopix_init(NEOPIX_PIN1, NEOPIX_LEN);
+    neo_t neo2 = neopix_init(NEOPIX_PIN2, NEOPIX_LEN);
+    neopix_clear(neo1);
 
     int16_t real[FFT_LEN] = {0};
     int16_t imag[FFT_LEN] = {0};
@@ -70,15 +72,18 @@ void notmain(void) {
         int neopix_idx = get_idx(freq);
         if (neopix_idx >= 0) {
             for (int i = 0; i < neopix_idx; i++) {
-                neopix_write(neo, i, 0x80, 0x80, 0x80);
+                neopix_write(neo1, i, 0x80, 0x80, 0x0);
+                neopix_write(neo2, i, 0x0, 0x80, 0x80);
             }
-            neopix_flush(neo);
+            neopix_flush(neo1);
+            neopix_flush(neo2);
 
             printk("%dHz, index %d\n", freq, neopix_idx);
         }
 
     }
-    neopix_clear(neo);
+    neopix_clear(neo1);
+    neopix_clear(neo2);
     // for (int i = 0; i < NEOPIX_LEN; i++) {
     //     neopix_write(neo, i, 0x0, 0x0, 0x0);
     // }
