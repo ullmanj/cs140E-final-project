@@ -6,9 +6,10 @@
 # PROGS = tests/4-fft-test.c
 # PROGS = tests/5-fft-time.c
 # PROGS = tests/6-fft-freqout.c
-PROGS = tests/7-fft-freqviz.c
+# PROGS = tests/7-fft-freqviz.c
 # PROGS = tests/8-fft-buckets.c
-PROGS = tests/10-server.c
+# PROGS = tests/10-server.c
+PROGS = tests/11-client.c
 
 OPT_LEVEL = -O3
 

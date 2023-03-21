@@ -40,6 +40,7 @@ void notmain(void) {
     neo_t neo1 = neopix_init(NEOPIX_PIN1, NEOPIX_LEN);
     neo_t neo2 = neopix_init(NEOPIX_PIN2, NEOPIX_LEN);
     neopix_clear(neo1);
+    neopix_clear(neo2);
 
     int16_t real[FFT_LEN] = {0};
     int16_t imag[FFT_LEN] = {0};
