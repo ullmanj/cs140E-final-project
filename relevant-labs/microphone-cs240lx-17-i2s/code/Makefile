@@ -23,6 +23,7 @@ COMMON_SRC += $(CS140E_2023_PATH)/../relevant-labs/16-nrf-networking/code/nrf-dr
 COMMON_SRC += $(CS140E_2023_PATH)/../relevant-labs/16-nrf-networking/code/nrf-hw-support.c
 
 STAFF_OBJS := $(CS140E_2023_PATH)/libpi/staff-objs/new-spi.o
+# STAFF_OBJS += $(CS140E_2023_PATH)/../relevant-labs/16-nrf-networking/code/staff-nrf-driver.o
 
 LIBS += ./libgcc.a
 

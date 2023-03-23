@@ -50,7 +50,7 @@ server_mk_noack(uint32_t rxaddr, uint32_t nbytes) {
 // client wrappers.
 static inline nrf_t *
 client_mk(uint32_t rxaddr, uint32_t nbytes, int ack_p) {
-    return nrf_init(client_conf(nbytes), rxaddr, ack_p);
+    return nrf_init(client_conf(nbytes), rxaddr, ack_p); // ! changed to _staff
 }
 static inline nrf_t *
 client_mk_ack(uint32_t rxaddr, uint32_t nbytes) {

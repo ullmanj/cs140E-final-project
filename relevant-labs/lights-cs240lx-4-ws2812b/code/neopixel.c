@@ -80,12 +80,21 @@ neo_t neopix_init(uint8_t pin, unsigned npixel) {
     neo_t h;
     unsigned nbytes = sizeof *h + sizeof h->pixels[0] * npixel;
     h = (void*)kmalloc(sizeof *h + sizeof h->pixels[0] * npixel);
-    memset(h, 0, nbytes);
-
+    memset(h, 0, nbytes); 
     h->npixel = npixel;
     h->pin = pin;
     gpio_set_output(pin);
+
     return h;
+}
+
+void neopix_dump(neo_t h) {
+    output("num pixels=%d\n", h->npixel);
+    output("neo pin=%d\n", h->pin);
+    for(int i = 0; i < h->npixel; i++) {
+        output("%x", h->pixels[i]);
+    }
+    output("\n\n");
 }
 
 // this just makes the definition visible in other modules.

@@ -4,6 +4,7 @@ typedef struct neo_handle *neo_t;
 
 // dynamically allocate structure for addressable light strip.
 neo_t neopix_init(uint8_t pin, unsigned npixels);
+void neopix_dump(neo_t h);
 
 // buffered write {r,g,b} into <h> at position <pos>: last write wins.  
 // does not flush out to light array until you call <neopixel_flush>.
