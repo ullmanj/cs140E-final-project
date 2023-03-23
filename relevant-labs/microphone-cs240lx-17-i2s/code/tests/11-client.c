@@ -16,7 +16,7 @@ enum { ntrial = 100, timeout_usec = 10000000, nbytes = 4 };  // made a large tim
 static int net_get32(nrf_t *nic, uint32_t *out) {
     int ret = nrf_read_exact_timeout(nic, out, 4, timeout_usec);
     if(ret != 4) {
-        debug("receive failed: ret=%d\n", ret);
+        //debug("receive failed: ret=%d\n", ret);
         return 0;
     }
     return 1;
@@ -54,18 +54,18 @@ void notmain(void) {
             // neopix_clear(neo1);
             // neopix_clear(neo2);
         } else {
-            nrf_output("me: received %d\n", neopix_idx);
+            //nrf_output("me: received %d\n", neopix_idx);
             if (neopix_idx >= 0) {
                 //  neopix_fast_clear(neo1, NEOPIX_LEN);
                 //  neopix_fast_clear(neo2, NEOPIX_LEN);
                 for (int i = 0; i < neopix_idx; i++) {
-                    neopix_write(neo1, i, 0x80, 0x80, 0x0);
-                    neopix_write(neo2, i, 0x0, 0x80, 0x80);
+                    neopix_write(neo1, i, 0xB2, 0x66, 0xFF);
+                    neopix_write(neo2, i, 0xFF, 0xFF, 0x0);
                 }
                 neopix_flush(neo1);
                 neopix_flush(neo2);
 
-                printk("index %d\n", neopix_idx);
+                //printk("index %d\n", neopix_idx);
             }
             // demand(exp == got, "exp vs. got mismatch\n");
         }

@@ -9,7 +9,8 @@
 # PROGS = tests/7-fft-freqviz.c
 # PROGS = tests/8-fft-buckets.c
 # PROGS = tests/10-server.c
-PROGS = tests/11-client.c
+# PROGS = tests/11-client.c
+PROGS = tests/13-final-client.c
 
 OPT_LEVEL = -O3
 
