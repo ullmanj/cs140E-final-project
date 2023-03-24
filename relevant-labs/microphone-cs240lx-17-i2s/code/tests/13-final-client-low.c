@@ -61,8 +61,8 @@ void notmain(void) {
                 // 1. locate the correct 5 bit value
                 uint32_t strip_height_1 = (neopix_val >> 5 * STRIP_ID1) & 0b11111;
                 uint32_t strip_height_2 = (neopix_val >> 5 * STRIP_ID2) & 0b11111;
-                printk("strip id=%d height=%d\n", STRIP_ID1, strip_height_1);
-                printk("strip id=%d height=%d\n", STRIP_ID2, strip_height_2);
+                //printk("strip id=%d height=%d\n", STRIP_ID1, strip_height_1);
+                //printk("strip id=%d height=%d\n", STRIP_ID2, strip_height_2);
 
                 // COLOR KEY: 
                     // JM = Red for ID1=0, Orange for ID2=1
@@ -71,11 +71,11 @@ void notmain(void) {
                     // Red - FF0808, Orange - FF8C08, Yellow - FFDE08
                     // Green - 00FF00, Cyan - 00FFFF, Lilac - CC99FF
                 for (int i = 0; i < strip_height_1; i++) {
-                    neopix_write(neo1, i, 0xB2, 0x66, 0xFF);
+                    neopix_write(neo1, i, 0xFF, 0x08, 0x08);
                 }
   
                 for (int i = 0; i < strip_height_2; i++) {
-                    neopix_write(neo2, i, 0x4C, 0x99, 0x0);
+                    neopix_write(neo2, i, 0x8D, 0x40, 0x04);
                 }
 
                 neopix_flush(neo1);
